@@ -27,7 +27,13 @@ QuestionCleanup <- function(x){
     return(data_content$text)
 }
 
-train$question1 <- QuestionCleanup(train$question1)
-train$question2 <- QuestionCleanup(train$question2)
+trainClean = train
+trainClean$question1 = tolower(trainClean$question1)
+q1Docs = Corpus(VectorSource(trainClean$question1))
+
+q1Docs <- tm_map(q1Docs, removeWords,stopwords('en'))
+
+#train$question1 <- QuestionCleanup(train$question1)
+#train$question2 <- QuestionCleanup(train$question2)
 
 
